@@ -1,32 +1,25 @@
-const cors = require('cors')
-const express = require('express')
-const fs = require('fs')
-const app = express()
-const port = 4000
+const cors = require("cors");
+const express = require("express");
+const fs = require("fs");
+const app = express();
+const port = 4000;
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
-const users = require('./users.json')
+const favorites = fs.readFile("./favorites.json");
 
-app.post('/api/signup', (req, res) => {
-  if (!req.body.name || !req.body.password) {
-    return res.status(400).json('Missing credentials')
-  }
-  const userExists = users.some(user => user.name === req.body.name)
-  if (userExists) {
-    return res.sendStatus(409)
-  }
-  const newUser = {
-    name: req.body.name,
-    password: req.body.password
-  }
-  users.push(newUser)
+app.post("/api/favorites", (req, res) => {
+  if (!req.body) return res.status(400).json("Some error");
 
-  fs.writeFileSync('users.json', JSON.stringify(users, null, 4))
-  res.sendStatus(200)
-})
+  const newFavorite = req.body;
+
+  favorites.push(newFavorite);
+
+  fs.writeFileSync("./favorites.json", JSON.stringify(users, null, 4));
+  res.sendStatus(200);
+});
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
