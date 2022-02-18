@@ -1,25 +1,49 @@
 const cors = require("cors");
 const express = require("express");
-const fs = require("fs");
+const fs = require("fs/promises");
 const app = express();
-const port = 4000;
+const port = 3001;
 
 app.use(cors());
 app.use(express.json());
 
-const favorites = fs.readFile("./favorites.json");
+let favorites;
+(async () => {
+  const result = await fs.readFile("./favorites.json");
+  favorites = await JSON.parse(result);
+})();
 
 app.post("/api/favorites", (req, res) => {
   if (!req.body) return res.status(400).json("Some error");
 
-  const newFavorite = req.body;
+  const newFavorite = {
+    title: req.body.title,
+    year: req.body.year,
+  };
 
   favorites.push(newFavorite);
 
-  fs.writeFileSync("./favorites.json", JSON.stringify(users, null, 4));
-  res.sendStatus(200);
+  const newFavorites = JSON.stringify(favorites);
+  fs.writeFile("./favorites.json", newFavorites);
+  res.status(200).json("Favorite is added");
 });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+/*
+app.post("/api/signup", (req, res) => {
+  if (!req.body.username || !req.body.password) return res.status(400).json("Missing input");
+  const existingUser = users.some((user) => user.username === req.body.username);
+  if (existingUser) return res.sendStatus(409);
+  const newUser = {
+    username: req.body.username,
+    password: req.body.password,
+    todos: [],
+  };
+  users.push(newUser);
+  fs.writeFileSync("users.json", JSON.stringify(users));
+  res.status(200).json("Signed up successfully");
+});
+*/
