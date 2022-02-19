@@ -17,8 +17,9 @@ app.post("/api/favorites", (req, res) => {
   if (!req.body) return res.status(400).json("Some error");
 
   const newFavorite = {
+    id: req.body.id,
     title: req.body.title,
-    year: req.body.year,
+    url: req.body.url,
   };
 
   favorites.push(newFavorite);
