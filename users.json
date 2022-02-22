@@ -5,5 +5,20 @@
         "favorites": [
             "pw is asd123"
         ]
+    },
+    {
+        "name": "vivi",
+        "password": "$2b$10$LXCLFccVD/7ZTnv7e2wYeewVGiuRI.P2021wiWeez6V5Cu7em.js2",
+        "favorites": []
+    },
+    {
+        "name": "helloWorld",
+        "password": "$2b$10$snrrLKgg97RoEubrsoVSMuItJX1AJrkV132gaQeow1BMc04IG9WgK",
+        "favorites": []
+    },
+    {
+        "name": "asdqwe",
+        "password": "$2b$10$.BNd7.tsaW7VJj/Io2CQk.QQ9Igwyq3h4oSXOjCHIpU82tm2rwCY2",
+        "favorites": []
     }
 ]

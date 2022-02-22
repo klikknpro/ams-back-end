@@ -6,11 +6,13 @@ const bcrypt = require('bcrypt');
 const { setTimeout } = require("timers/promises");
 const app = express();
 const port = 3001;
-
+// app.post api/todo kell
 app.use(cors());
 app.use(express.json());
 
 const users = require('./users.json');
+
+let mySessionStorage = {};
 
 let favorites;
 (async () => {
@@ -119,13 +121,21 @@ app.post('/api/login', (req, res) => {
   const password = autoHead.split(':::')[1]
   const hashed = users.find(user => user.name === username).password
   const isTrue = bcrypt.compareSync(password, hashed)
+  // const user = users.find(user => user.name === username && user.password ===)
 
   // const user = users.find(user => user.name === username && user.password === password)
 
   if (!isTrue) return res.sendStatus(401);
+  const user = users.find(user => user.name === username)
+  const sessionId = Math.random().toString();
+  mySessionStorage[sessionId] = user;
 
+  setTimeout(() => {
+    console.log("Session ended!")
+    delete mySessionStorage[sessionId]
+  }, 30 * 60 * 1000)
   // res.json(hashed)
-  res.sendStatus(200)
+  res.json(sessionId).status(200)
 })
 
 app.get('/api/login', (req, res) => {
@@ -134,8 +144,23 @@ app.get('/api/login', (req, res) => {
   res.status(200)
 })
 
+app.delete("/api/logout", (req, res) => {
+  console.log("header:", req.headers)
+  const sessionId = req.header('authorization')
+  console.log("my sessionid:", sessionId)
+  if (!sessionId) return res.sendStatus(401)
+  delete mySessionStorage[sessionId]
+  console.log("my session storage:", mySessionStorage)
+  res.sendStatus(200)
+})
+
 app.get("/api/favorites", (req, res) => {
-  //
+  const sessionId = req.header('authorization')
+  if (!sessionId) return sendStatus(401)
+
+  const user = mySessionStorage[sessionId];
+  if (!user) return res.sendStatus(401);
+  res.json(user.favorites)
 });
 
 app.listen(port, () => {
