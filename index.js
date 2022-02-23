@@ -3,14 +3,17 @@ const express = require("express");
 const fsp = require("fs/promises");
 const fs = require("fs");
 const bcrypt = require('bcrypt');
+const btoa = require('btoa');
 const { setTimeout } = require("timers/promises");
 const app = express();
 const port = 3001;
+
 // app.post api/todo kell
 app.use(cors());
 app.use(express.json());
 
 const users = require('./users.json');
+const base64 = require('./base64.json');
 const collection = require('./favoriteCollection.json');
 const { sendStatus } = require("express/lib/response");
 
@@ -66,11 +69,13 @@ app.post("/api/favorites", (req, res) => {
   const user = mySessionStorage[sessionId];
   if (!user) return res.sendStatus(401);
   if (!req.body.url) return res.sendStatus(400);
+  // const base64 = req.body.url
   const fav = {
     id: req.body.id,
     url: req.body.url,
     note: req.body.note,
     tags: req.body.tags,
+    base64: btoa(req.body.url)
   };
   user.favorites.push(fav)
   fs.writeFileSync("./users.json", JSON.stringify(users, null, 4));
@@ -84,6 +89,16 @@ app.post("/api/collection", (req, res) => {
   const favUrl = collection;
   favUrl.push(req.body.url)
   fs.writeFileSync('./favoriteCollection.json', JSON.stringify(favUrl, null, 4))
+  res.sendStatus(200)
+})
+
+app.post("/api/base64", (req, res) => {
+  const sessionId = req.header("authorization");
+  if (!sessionId) return sendStatus(401);
+  if (!req.body.url) return res.sendStatus(400);
+  const favBase64 = base64;
+  favBase64.push(btoa(req.body.url))
+  fs.writeFileSync('./base64.json', JSON.stringify(favBase64, null, 4))
   res.sendStatus(200)
 })
 

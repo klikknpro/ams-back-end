@@ -3,7 +3,48 @@
         "name": "Samuel0220",
         "password": "$2b$10$r2IrdhA6javVMuuxAhTkyOUDcc3Sd79tK5YX3t6zsEsU/l8w6eLiC",
         "favorites": [
-            "pw is asd123"
+            {
+                "id": "92937",
+                "url": "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg",
+                "note": "newnote",
+                "tags": [
+                    "newnote911"
+                ]
+            },
+            {
+                "id": "94979",
+                "url": "https://openaccess-cdn.clevelandart.org/1915.534/1915.534_web.jpg",
+                "note": "nathan",
+                "tags": [
+                    "ntahan"
+                ]
+            },
+            {
+                "id": "94979",
+                "url": "https://openaccess-cdn.clevelandart.org/1915.534/1915.534_web.jpg",
+                "note": "asfaf",
+                "tags": [
+                    "asfaf"
+                ]
+            },
+            {
+                "id": "92937",
+                "url": "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg",
+                "note": "",
+                "tags": [
+                    ""
+                ],
+                "base64": "aHR0cHM6Ly9vcGVuYWNjZXNzLWNkbi5jbGV2ZWxhbmRhcnQub3JnLzE5MjIuMTEzMy8xOTIyLjExMzNfd2ViLmpwZw=="
+            },
+            {
+                "id": "92937",
+                "url": "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg",
+                "note": "",
+                "tags": [
+                    ""
+                ],
+                "base64": "aHR0cHM6Ly9vcGVuYWNjZXNzLWNkbi5jbGV2ZWxhbmRhcnQub3JnLzE5MjIuMTEzMy8xOTIyLjExMzNfd2ViLmpwZw=="
+            }
         ]
     },
     {
