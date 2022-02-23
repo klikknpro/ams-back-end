@@ -87,15 +87,15 @@ app.post("/api/collection", (req, res) => {
   res.sendStatus(200)
 })
 
-app.get("/api/myfavorites", (req, res) => {
-  const sessionId = req.header("authorization");
-  if (!sessionId) return sendStatus(401);
-  const user = mySessionStorage[sessionId].user;
-  if (!user) return res.sendStatus(401);
+// app.get("/api/myfavorites", (req, res) => {
+//   const sessionId = req.header("authorization");
+//   if (!sessionId) return sendStatus(401);
+//   const user = mySessionStorage[sessionId].user;
+//   if (!user) return res.sendStatus(401);
 
-  res.send("user")
-  res.status(200)
-})
+//   res.send("user")
+//   res.status(200)
+// })
 
 // SignUp
 // hash
