@@ -7,18 +7,18 @@
         ]
     },
     {
-        "name": "vivi",
-        "password": "$2b$10$LXCLFccVD/7ZTnv7e2wYeewVGiuRI.P2021wiWeez6V5Cu7em.js2",
-        "favorites": []
-    },
-    {
-        "name": "helloWorld",
-        "password": "$2b$10$snrrLKgg97RoEubrsoVSMuItJX1AJrkV132gaQeow1BMc04IG9WgK",
-        "favorites": []
-    },
-    {
-        "name": "asdqwe",
-        "password": "$2b$10$.BNd7.tsaW7VJj/Io2CQk.QQ9Igwyq3h4oSXOjCHIpU82tm2rwCY2",
-        "favorites": []
+        "name": "NewUser",
+        "password": "$2b$10$OSDNQ7W0j32oYMr70FhuKuZ7qbo9hvcMeF5s3iJdKRXzRlfeuWKe.",
+        "favorites": [
+            {
+                "id": "94979",
+                "url": "https://openaccess-cdn.clevelandart.org/1915.534/1915.534_web.jpg",
+                "note": "notenoteloremnote",
+                "tags": [
+                    "tag1",
+                    "tag2"
+                ]
+            }
+        ]
     }
 ]

@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const users = require('./users.json');
+const { sendStatus } = require("express/lib/response");
 
 let mySessionStorage = {};
 
@@ -28,24 +29,62 @@ let favorites;
 console.log(users)
 
 // add favorite
-app.post("/api/favorites", (req, res) => {
-  if (!req.body) return res.sendStatus(400);
+// app.post("/api/favorites", (req, res) => {
+//   if (!req.body) return res.sendStatus(400);
 
-  const newFavorite = {
+//   const newFavorite = {
+//     id: req.body.id,
+//     title: req.body.title,
+//     url: req.body.url,
+//     note: req.body.note,
+//     tags: req.body.tags,
+//   };
+
+//   favorites.push(newFavorite);
+//   // users.push(newFavorite)
+
+//   const newFavorites = JSON.stringify(favorites);
+//   fsp.writeFile("./favorites.json", newFavorites);
+//   res.status(200).json("Favorite is added");
+// });
+
+// app.post("/api/favorites", (req, res) => {
+//   const sessionId = req.header("authorization");
+//   if (!sessionId) return sendStatus(401);
+//   const user = mySessionStorage[sessionId];
+//   if (!user) return res.sendStatus(401);
+//   if (!req.body.url) return res.sendStatus(400);
+//   const fav = req.body.url;
+//   user.favorites.push(fav)
+//   fs.writeFileSync("./users.json", JSON.stringify(users, null, 4));
+//   res.sendStatus(200)
+// })
+app.post("/api/favorites", (req, res) => {
+  const sessionId = req.header("authorization");
+  if (!sessionId) return sendStatus(401);
+  const user = mySessionStorage[sessionId];
+  if (!user) return res.sendStatus(401);
+  if (!req.body.url) return res.sendStatus(400);
+  const fav = {
     id: req.body.id,
-    title: req.body.title,
     url: req.body.url,
     note: req.body.note,
     tags: req.body.tags,
   };
+  user.favorites.push(fav)
+  fs.writeFileSync("./users.json", JSON.stringify(users, null, 4));
+  res.sendStatus(200)
+})
 
-  favorites.push(newFavorite);
-  // users.push(newFavorite)
+app.get("/api/myFavorites", (req, res) => {
+  const sessionId = req.header("authorization");
+  if (!sessionId) return sendStatus(401);
+  const user = mySessionStorage[sessionId].user;
+  if (!user) return res.sendStatus(401);
+  if (!req.body.url) return res.sendStatus(400);
 
-  const newFavorites = JSON.stringify(favorites);
-  fsp.writeFile("./favorites.json", newFavorites);
-  res.status(200).json("Favorite is added");
-});
+  res.json(user.favorites).status(200)
+})
 
 // SignUp
 // hash
@@ -65,10 +104,10 @@ app.post('/api/signup', (req, res) => {
   }
   const userExists = users.some(user => user.name === req.body.name)
   if (userExists) {
-    return res.sendStatus(409)
+    return res.json("User already exists!").status(409)
   }
 
-  console.log(generateHash('123asd'))
+  // console.log(generateHash('123asd'))
 
   const newUser = {
     name: req.body.name,
@@ -130,10 +169,10 @@ app.post('/api/login', (req, res) => {
   const sessionId = Math.random().toString();
   mySessionStorage[sessionId] = user;
 
-  setTimeout(() => {
-    console.log("Session ended!")
-    delete mySessionStorage[sessionId]
-  }, 30 * 60 * 1000)
+  // setTimeout(() => {
+  //   console.log("Session ended!")
+  //   delete mySessionStorage[sessionId]
+  // }, 30 * 60 * 1000)
   // res.json(hashed)
   res.json(sessionId).status(200)
 })
