@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const users = require('./users.json');
+const collection = require('./favoriteCollection.json');
 const { sendStatus } = require("express/lib/response");
 
 let mySessionStorage = {};
@@ -26,7 +27,7 @@ let favorites;
 //   users = await JSON.parse(result);
 // })();
 
-console.log(users)
+// console.log(users)
 
 // add favorite
 // app.post("/api/favorites", (req, res) => {
@@ -73,6 +74,16 @@ app.post("/api/favorites", (req, res) => {
   };
   user.favorites.push(fav)
   fs.writeFileSync("./users.json", JSON.stringify(users, null, 4));
+  res.sendStatus(200)
+})
+
+app.post("/api/collection", (req, res) => {
+  const sessionId = req.header("authorization");
+  if (!sessionId) return sendStatus(401);
+  if (!req.body.url) return res.sendStatus(400);
+  const favUrl = collection;
+  favUrl.push(req.body.url)
+  fs.writeFileSync('./favoriteCollection.json', JSON.stringify(favUrl, null, 4))
   res.sendStatus(200)
 })
 
@@ -149,7 +160,7 @@ app.post('/api/signup', (req, res) => {
 //   res.sendStatus(200)
 // })
 
-console.log("Samuel0220:", users.find(user => user.name === "Samuel0220").password)
+// console.log("Samuel0220:", users.find(user => user.name === "Samuel0220").password)
 
 let username;
 app.post('/api/login', (req, res) => {
@@ -184,12 +195,12 @@ app.get('/api/login', (req, res) => {
 })
 
 app.delete("/api/logout", (req, res) => {
-  console.log("header:", req.headers)
+  // console.log("header:", req.headers)
   const sessionId = req.header('authorization')
-  console.log("my sessionid:", sessionId)
+  // console.log("my sessionid:", sessionId)
   if (!sessionId) return res.sendStatus(401)
   delete mySessionStorage[sessionId]
-  console.log("my session storage:", mySessionStorage)
+  // console.log("my session storage:", mySessionStorage)
   res.sendStatus(200)
 })
 

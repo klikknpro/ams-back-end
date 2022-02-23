@@ -20,5 +20,99 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "FinalUser",
+        "password": "$2b$10$m6L67Qh0CB2ladcb9UGFaePzxmOz2xkDZ08fvkKdkhYyfCW0JEDo2",
+        "favorites": [
+            {
+                "id": "94979",
+                "url": "https://openaccess-cdn.clevelandart.org/1915.534/1915.534_web.jpg",
+                "note": "notenoteloremnote",
+                "tags": [
+                    "tag1",
+                    "tag2",
+                    "tag999"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "FinalF",
+        "password": "$2b$10$aQyRx1KsYiWa5nxefg7rl.xy53M0ACRQc9FlhzHfQIrIyLCWyWVvC",
+        "favorites": [
+            {
+                "id": "94979",
+                "url": "https://openaccess-cdn.clevelandart.org/1915.534/1915.534_web.jpg",
+                "note": "notenoteloremnote",
+                "tags": [
+                    "tag1",
+                    "tag2"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Anyád",
+        "password": "$2b$10$qAFfXBAcqP99gig4c/zt.ujaxGousAd21dgHoO8A.csh7BBQTB8kW",
+        "favorites": [
+            {
+                "id": "94979",
+                "url": "https://openaccess-cdn.clevelandart.org/1915.534/1915.534_web.jpg",
+                "note": "notenoteloremnoteanyád",
+                "tags": [
+                    "anyád1",
+                    "anyád2"
+                ]
+            },
+            {
+                "id": "94979",
+                "url": "https://openaccess-cdn.clevelandart.org/1915.534/1915.534_web.jpg",
+                "note": "anyád",
+                "tags": [
+                    "anyád"
+                ]
+            },
+            {
+                "id": "92937",
+                "url": "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg",
+                "note": "működikazanyád",
+                "tags": [
+                    "anyád"
+                ]
+            },
+            {
+                "id": "92937",
+                "url": "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg",
+                "note": "",
+                "tags": [
+                    ""
+                ]
+            },
+            {
+                "id": "94979",
+                "url": "https://openaccess-cdn.clevelandart.org/1915.534/1915.534_web.jpg",
+                "note": "",
+                "tags": [
+                    ""
+                ]
+            },
+            {
+                "id": "94979",
+                "url": "https://openaccess-cdn.clevelandart.org/1915.534/1915.534_web.jpg",
+                "note": "workdude",
+                "tags": [
+                    "work"
+                ]
+            },
+            {
+                "id": "92937",
+                "url": "https://openaccess-cdn.clevelandart.org/1922.1133/1922.1133_web.jpg",
+                "note": "itsworking-anakin",
+                "tags": [
+                    "itsworking"
+                ]
+            }
+        ]
     }
 ]
