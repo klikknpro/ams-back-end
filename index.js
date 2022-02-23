@@ -92,7 +92,6 @@ app.get("/api/myFavorites", (req, res) => {
   if (!sessionId) return sendStatus(401);
   const user = mySessionStorage[sessionId].user;
   if (!user) return res.sendStatus(401);
-  if (!req.body.url) return res.sendStatus(400);
 
   res.json(user.favorites).status(200)
 })
