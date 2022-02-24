@@ -4,9 +4,9 @@ const fsp = require("fs/promises");
 const fs = require("fs");
 const bcrypt = require('bcrypt');
 const btoa = require('btoa');
-const { setTimeout } = require("timers/promises");
 const app = express();
 const port = 3001;
+// const { setTimeout } = require("timers/promises");
 
 // app.post api/todo kell
 app.use(cors());
