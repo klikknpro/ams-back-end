@@ -155,5 +155,15 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "NewUser24",
+        "password": "$2b$10$ZngGW4GIgSsHiZg3zNlZlexxVgQ0K1XgCpHPYZIp2mALfmVAopU0q",
+        "favorites": []
+    },
+    {
+        "name": "asdfgh",
+        "password": "$2b$10$m84231VGZ8AWEwg/whC2I.MAAiTaq9FeTG/EhTfpr1wVYz4zJhvb6",
+        "favorites": []
     }
 ]
