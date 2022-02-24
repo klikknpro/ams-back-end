@@ -72,6 +72,7 @@ app.post("/api/favorites", (req, res) => {
   // const base64 = req.body.url
   const fav = {
     id: req.body.id,
+    title: req.body.title,
     url: req.body.url,
     note: req.body.note,
     tags: req.body.tags,
